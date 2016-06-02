@@ -35,6 +35,7 @@ set expandtab
 set virtualedit=block
 " Show line numbers
 set number
+
 " Disable auto change working directory
 set noautochdir
 " Incremental search
@@ -49,7 +50,10 @@ let mapleader=','
 " open vimrc in a new tab
 map <leader>vimrc :tabe ~/.vimrc<cr>
 " reload .vimrc on write
-autocmd bufwritepost ~/.vimrc source $MYVIMRC
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
 
 """""""""""""""""""""""
 " Plugins
