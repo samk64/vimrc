@@ -14,6 +14,18 @@ Plugin 'majutsushi/tagbar'                  " class outline viewer
 Plugin 'sickill/vim-monokai'                " colorscheme monokai
 Plugin 'tpope/vim-fugitive'                 " git wrapper
 Plugin 'ctrlpvim/ctrlp.vim'                 " fuzzy search
+Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:Ag)
+                                            " e    to open file and close the quickfix window
+                                            " o    to open (same as enter)
+                                            " go   to preview file (open but maintain focus on ag.vim results)
+                                            " t    to open in new tab
+                                            " T    to open in new tab silently
+                                            " h    to open in horizontal split
+                                            " H    to open in horizontal split silently
+                                            " v    to open in vertical split
+                                            " gv   to open in vertical split silently
+                                            " q    to close the quickfix window
+
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -84,9 +96,17 @@ let g:ctrlp_cmd = 'CtrlP'
     " CtrlPMRU
     " CtrlPBuffer 
     " CtrlPLine 
-let g:ctrlp_extensions = ['buffertag', 'line'] " 'tag', 'dir'
-" Map ctrl+k to line search
-nnoremap <C-k> <Esc>:CtrlPLine<CR>
+    " CtrlPTag 
+    " CtrlPBufTag 
+let g:ctrlp_extensions = ['buffertag', 'line', 'dir'] " 'tag' 
+" Search from current working directory
+let g:ctrlp_working_path_mode = 0
+" Hotkeys ctrl+k to line search
+nnoremap <C-k> <Esc>:CtrlPLine<CR> 
+" Hotkeys leader+t to search tags
+nnoremap <Leader>r :CtrlPBufTag<CR>
+nnoremap <Leader>t :CtrlP ~/<CR>
+nnoremap <Leader>m :CtrlPMRU<CR>
 
 " The Silver Searcher
 if executable('ag')
