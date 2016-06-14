@@ -52,6 +52,8 @@ set number
 set noautochdir
 " Incremental search
 set incsearch
+" Encode utf-8, helps with NERDTree folders
+set encoding=utf-8
 
 """""""""""""""""""""""
 " Key Mappings
@@ -71,6 +73,7 @@ augroup END " }
 " Plugins
 """"""""""""""""""""""""
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" let NERDTreeDirArrows=0
 " Tagbar (Class method listing)
 nnoremap <Leader>c :TagbarToggle<CR>
 
