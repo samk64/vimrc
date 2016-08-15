@@ -25,6 +25,8 @@ Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:A
                                             " v    to open in vertical split
                                             " gv   to open in vertical split silently
                                             " q    to close the quickfix window
+Plugin 'vim-surround'
+Plugin 'vim-repeat'
 
 
 " declare all vundle plugins before this line
@@ -47,20 +49,28 @@ set expandtab
 set virtualedit=block
 " Show line numbers
 set number
-
+" Don't indent when pasting
+" set paste
 " Disable auto change working directory
 set noautochdir
 " Incremental search
 set incsearch
 " Encode utf-8, helps with NERDTree folders
 set encoding=utf-8
-
+" Code folding
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+" Put vertical split buffers on the right
+set splitright
 """""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""
 " leader key allows user-defined custom commands
 let mapleader=','
 
+map <leader>ne :set noexpandtab<cr>
 " open vimrc in a new tab
 map <leader>vimrc :tabe ~/.vimrc<cr>
 " reload .vimrc on write
@@ -84,7 +94,7 @@ set tags=~/ctags
 "let g:CommandTAcceptSelectionMap = '<C-t>'
 
 " Enter opens selected file in tab
-let g:CommandTAcceptSelectionTabMap = '<CR>'
+"let g:CommandTAcceptSelectionTabMap = '<CR>'
 set wildignore+=*.rst,*.git,*.swp,*.bak,*/_tmp/**,*/node_modules/**
 
 " Search from current working directory
@@ -105,7 +115,7 @@ let g:ctrlp_extensions = ['buffertag', 'line', 'dir'] " 'tag'
 " Search from current working directory
 let g:ctrlp_working_path_mode = 0
 " Hotkeys ctrl+k to line search
-nnoremap <C-k> <Esc>:CtrlPLine<CR> 
+" nnoremap <C-k> <Esc>:CtrlPLine<CR> 
 " Hotkeys leader+t to search tags
 nnoremap <Leader>r :CtrlPBufTag<CR>
 nnoremap <Leader>t :CtrlP ~/<CR>
