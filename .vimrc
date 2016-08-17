@@ -27,6 +27,7 @@ Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:A
                                             " q    to close the quickfix window
 Plugin 'vim-surround'
 Plugin 'vim-repeat'
+Plugin 'robotframework-vim'
 
 
 " declare all vundle plugins before this line
