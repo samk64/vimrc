@@ -28,6 +28,8 @@ Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:A
 Plugin 'vim-surround'
 Plugin 'vim-repeat'
 Plugin 'robotframework-vim'
+Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
+Plugin 'ciaranm/detectindent'               " guess correct indent settings
 
 
 " declare all vundle plugins before this line
@@ -45,7 +47,7 @@ set tabstop=4
 " Indents, '>', will have a width of 4
 set shiftwidth=4
 " Expand tabs to spaces
-set expandtab
+"set expandtab
 " Allow cursor to places with no actual character (column edit)
 set virtualedit=block
 " Show line numbers
@@ -84,6 +86,7 @@ augroup END " }
 " Plugins
 """"""""""""""""""""""""
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>s <plug>NERDTreeTabsFind<CR>
 " let NERDTreeDirArrows=0
 " Tagbar (Class method listing)
 nnoremap <Leader>c :TagbarToggle<CR>
