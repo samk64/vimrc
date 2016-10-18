@@ -8,7 +8,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'                " file navigation - requisite for NERDTreeTabs 
-Plugin 'jistr/vim-nerdtree-tabs'            " file navigation - variant of NERDTree
+"Plugin 'jistr/vim-nerdtree-tabs'            " file navigation - variant of NERDTree
 "Plugin 'wincent/command-t'                  " file navigation - fuzzy file search
 Plugin 'majutsushi/tagbar'                  " class outline viewer
 Plugin 'sickill/vim-monokai'                " colorscheme monokai
@@ -27,10 +27,10 @@ Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:A
                                             " q    to close the quickfix window
 Plugin 'vim-surround'
 Plugin 'vim-repeat'
-Plugin 'robotframework-vim'
 Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
 Plugin 'ciaranm/detectindent'               " guess correct indent settings
-
+Plugin 'robotframework-vim'                 " robot syntax
+Plugin 'groenewege/vim-less'                " less syntax
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -61,19 +61,23 @@ set incsearch
 " Encode utf-8, helps with NERDTree folders
 set encoding=utf-8
 " Code folding
-set foldmethod=indent   
+set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 " Put vertical split buffers on the right
 set splitright
+" Mouse scrolling
+set mouse=a
 """""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""
 " leader key allows user-defined custom commands
 let mapleader=','
 
-map <leader>ne :set noexpandtab<cr>
+map <leader>b :ls<cr>:b<space>
+" toggle paste mode for pasting from clipboard
+set pastetoggle=<leader>p
 " open vimrc in a new tab
 map <leader>vimrc :tabe ~/.vimrc<cr>
 " reload .vimrc on write
@@ -85,8 +89,8 @@ augroup END " }
 """""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-map <Leader>s <plug>NERDTreeTabsFind<CR>
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>s :NERDTreeFind<CR>
 " let NERDTreeDirArrows=0
 " Tagbar (Class method listing)
 nnoremap <Leader>c :TagbarToggle<CR>
@@ -119,7 +123,7 @@ let g:ctrlp_extensions = ['buffertag', 'line', 'dir'] " 'tag'
 " Search from current working directory
 let g:ctrlp_working_path_mode = 0
 " Hotkeys ctrl+k to line search
-" nnoremap <C-k> <Esc>:CtrlPLine<CR> 
+nnoremap <C-k> <Esc>:CtrlPLine<CR> 
 " Hotkeys leader+t to search tags
 nnoremap <Leader>r :CtrlPBufTag<CR>
 nnoremap <Leader>t :CtrlP ~/<CR>
