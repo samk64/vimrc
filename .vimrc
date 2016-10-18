@@ -25,11 +25,11 @@ Plugin 'rking/ag.vim'                       " Vim plugin for silver searcher (:A
                                             " v    to open in vertical split
                                             " gv   to open in vertical split silently
                                             " q    to close the quickfix window
-Plugin 'vim-surround'
-Plugin 'vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'mfukar/robotframework-vim'
 Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
 Plugin 'ciaranm/detectindent'               " guess correct indent settings
-Plugin 'robotframework-vim'                 " robot syntax
 Plugin 'groenewege/vim-less'                " less syntax
 
 " declare all vundle plugins before this line
