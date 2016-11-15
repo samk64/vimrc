@@ -31,6 +31,7 @@ Plugin 'mfukar/robotframework-vim'
 Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
 Plugin 'ciaranm/detectindent'               " guess correct indent settings
 Plugin 'groenewege/vim-less'                " less syntax
+Plugin 'digitaltoad/vim-pug'                " pug syntax
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -48,6 +49,8 @@ set tabstop=4
 set shiftwidth=4
 " Expand tabs to spaces
 "set expandtab
+set autoindent
+filetype plugin indent on
 " Allow cursor to places with no actual character (column edit)
 set virtualedit=block
 " Show line numbers
@@ -75,7 +78,7 @@ set mouse=a
 " leader key allows user-defined custom commands
 let mapleader=','
 
-map <leader>b :ls<cr>:b<space>
+"map <leader>b :ls<cr>:b<space> " Commented out in favor of ctrlp
 " toggle paste mode for pasting from clipboard
 set pastetoggle=<leader>p
 " open vimrc in a new tab
@@ -128,6 +131,8 @@ nnoremap <C-k> <Esc>:CtrlPLine<CR>
 nnoremap <Leader>r :CtrlPBufTag<CR>
 nnoremap <Leader>t :CtrlP ~/<CR>
 nnoremap <Leader>m :CtrlPMRU<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+
 
 " The Silver Searcher
 if executable('ag')
