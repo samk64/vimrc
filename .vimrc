@@ -50,6 +50,8 @@ set shiftwidth=4
 " Expand tabs to spaces
 "set expandtab
 set autoindent
+" No text wrapping
+set nowrap
 filetype plugin indent on
 " Allow cursor to places with no actual character (column edit)
 set virtualedit=block
@@ -72,6 +74,8 @@ set foldlevel=2
 set splitright
 " Mouse scrolling
 set mouse=a
+" Use mouse in xterm
+set ttymouse=xterm2
 """""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""
