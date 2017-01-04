@@ -32,6 +32,7 @@ Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
 Plugin 'ciaranm/detectindent'               " guess correct indent settings
 Plugin 'groenewege/vim-less'                " less syntax
 Plugin 'digitaltoad/vim-pug'                " pug syntax
+Plugin 'tpope/vim-commentary'               " pug syntax
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -43,28 +44,20 @@ filetype plugin indent on    " required - filetype plugin based indentation
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
-" Width of a TAB displayed as 4 spaces
-set tabstop=4
-" Indents, '>', will have a width of 4
-set shiftwidth=4
-" Expand tabs to spaces
+set tabstop=4                               " Width of a TAB displayed as 4 spaces
+                                            " Indents, '>', will have a width of 4
+set shiftwidth=4                            " Expand tabs to spaces
 "set expandtab
-set autoindent
-" No text wrapping
-set nowrap
-filetype plugin indent on
-" Allow cursor to places with no actual character (column edit)
+"set autoindent
+set nowrap                                  " No text wrapping
+filetype plugin indent on                   " Allow cursor to places with no actual character (column edit)
 set virtualedit=block
-" Show line numbers
-set number
-" Don't indent when pasting
-" set paste
-" Disable auto change working directory
-set noautochdir
-" Incremental search
-set incsearch
-" Encode utf-8, helps with NERDTree folders
-set encoding=utf-8
+set number                                  " Show line numbers
+" set paste                                 " Don't indent when pasting
+set noautochdir                             " Disable auto change working directory
+set incsearch                               " Incremental search
+set encoding=utf-8                          " Encode utf-8, helps with NERDTree folders
+
 " Code folding
 set foldmethod=indent
 set foldnestmax=10
@@ -72,10 +65,9 @@ set nofoldenable
 set foldlevel=2
 " Put vertical split buffers on the right
 set splitright
-" Mouse scrolling
-set mouse=a
-" Use mouse in xterm
-set ttymouse=xterm2
+set mouse=a                                 " Mouse scrolling
+set ttymouse=xterm2                         " Use mouse in xterm
+
 """""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""
@@ -101,7 +93,8 @@ map <Leader>s :NERDTreeFind<CR>
 " let NERDTreeDirArrows=0
 " Tagbar (Class method listing)
 nnoremap <Leader>c :TagbarToggle<CR>
-
+" Vim-Commentary hotkey
+noremap <leader>/ :Commentary<cr>
 " Code Navigation
 set tags=~/ctags
 
