@@ -29,10 +29,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'mfukar/robotframework-vim'
 Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
-Plugin 'ciaranm/detectindent'               " guess correct indent settings
+Plugin 'tpope/vim-sleuth'                   " adjust shiftwidth and expandtab
 Plugin 'groenewege/vim-less'                " less syntax
 Plugin 'digitaltoad/vim-pug'                " pug syntax
-Plugin 'tpope/vim-commentary'               " pug syntax
+Plugin 'tpope/vim-commentary'               " comment out lines
+Plugin 'vim-syntastic/syntastic'            " syntax checker
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -44,9 +45,9 @@ filetype plugin indent on    " required - filetype plugin based indentation
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
-set tabstop=4                               " Width of a TAB displayed as 4 spaces
+"set tabstop=4                               " Width of a TAB displayed as 4 spaces
                                             " Indents, '>', will have a width of 4
-set shiftwidth=4                            " Expand tabs to spaces
+"set shiftwidth=4                            " Expand tabs to spaces
 "set expandtab
 "set autoindent
 set nowrap                                  " No text wrapping
@@ -67,6 +68,9 @@ set foldlevel=2
 set splitright
 set mouse=a                                 " Mouse scrolling
 set ttymouse=xterm2                         " Use mouse in xterm
+
+au BufReadPost Jenkinsfile set syntax=groovy
+au BufReadPost Jenkinsfile set filetype=groovy
 
 """""""""""""""""""""""
 " Key Mappings
@@ -130,6 +134,19 @@ nnoremap <Leader>t :CtrlP ~/<CR>
 nnoremap <Leader>m :CtrlPMRU<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+" nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " The Silver Searcher
 if executable('ag')
