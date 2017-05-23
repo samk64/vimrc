@@ -45,10 +45,12 @@ filetype plugin indent on    " required - filetype plugin based indentation
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
-"set tabstop=4                               " Width of a TAB displayed as 4 spaces
                                             " Indents, '>', will have a width of 4
-"set shiftwidth=4                            " Expand tabs to spaces
-"set expandtab
+set tabstop=4                               " Width of a TAB displayed as 4 spaces
+set softtabstop=0
+set shiftwidth=4                            " Expand tabs to spaces
+set expandtab!
+set smarttab
 "set autoindent
 set nowrap                                  " No text wrapping
 filetype plugin indent on                   " Allow cursor to places with no actual character (column edit)
@@ -135,19 +137,28 @@ nnoremap <Leader>m :CtrlPMRU<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+" Syntastic setup
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*%<%=%F\ %l\:%c
+" let g:syntastic_python_checkers = ['pep8', 'pep257', 'python', 'pylint']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['python'],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [''], 'passive_filetypes': [] }
 " nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-nnoremap <Leader>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-
+nnoremap <Leader>T :SyntasticToggleMode<CR>
+nnoremap <Leader>R :SyntasticReset<CR>
+nnoremap <Leader>C :SyntasticCheck<CR>
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
