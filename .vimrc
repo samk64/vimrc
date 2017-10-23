@@ -34,6 +34,7 @@ Plugin 'groenewege/vim-less'                " less syntax
 Plugin 'digitaltoad/vim-pug'                " pug syntax
 Plugin 'tpope/vim-commentary'               " comment out lines
 Plugin 'vim-syntastic/syntastic'            " syntax checker
+Plugin 'chrisbra/unicode.vim'               " completion for unicode glyphs
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -45,8 +46,8 @@ filetype plugin indent on    " required - filetype plugin based indentation
 """""""""""""""""""""""
 " Settings
 """""""""""""""""""""""
-                                            " Indents, '>', will have a width of 4
 set tabstop=4                               " Width of a TAB displayed as 4 spaces
+                                            " Indents, '>', will have a width of 4
 set softtabstop=0
 set shiftwidth=4                            " Expand tabs to spaces
 set expandtab!
