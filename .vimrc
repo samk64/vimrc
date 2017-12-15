@@ -32,7 +32,7 @@ Plugin 'jeetsukumaran/vim-indentwise'       " indent-level based motion
 Plugin 'tpope/vim-sleuth'                   " adjust shiftwidth and expandtab
 Plugin 'groenewege/vim-less'                " less syntax
 Plugin 'digitaltoad/vim-pug'                " pug syntax
-Plugin 'tpope/vim-commentary'               " comment out lines
+Plugin 'tpope/vim-commentary'               " comment out lines - use gcc or gc<motion>
 Plugin 'vim-syntastic/syntastic'            " syntax checker
 Plugin 'chrisbra/unicode.vim'               " completion for unicode glyphs
 
@@ -171,6 +171,13 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" custom ctrlp ignore settings
+unlet g:ctrlp_custom_ignore
+unlet g:ctrlp_user_command
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 """""""""""""""""""""""
 " Display
