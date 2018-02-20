@@ -35,6 +35,8 @@ Plugin 'digitaltoad/vim-pug'                " pug syntax
 Plugin 'tpope/vim-commentary'               " comment out lines - use gcc or gc<motion>
 Plugin 'vim-syntastic/syntastic'            " syntax checker
 Plugin 'chrisbra/unicode.vim'               " completion for unicode glyphs
+Plugin 'xolox/vim-misc'                     " misc auto-load scripts
+Plugin 'xolox/vim-session'                  " extended session management
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -57,12 +59,15 @@ set nowrap                                  " No text wrapping
 filetype plugin indent on                   " Allow cursor to places with no actual character (column edit)
 set virtualedit=block
 set number                                  " Show line numbers
+"set relativenumber                          " Relative line numbering
 " set paste                                 " Don't indent when pasting
 set noautochdir                             " Disable auto change working directory
 set incsearch                               " Incremental search
 set encoding=utf-8                          " Encode utf-8, helps with NERDTree folders
 
+"""""""""""""""
 " Code folding
+"""""""""""""""
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
@@ -71,6 +76,7 @@ set foldlevel=2
 set splitright
 set mouse=a                                 " Mouse scrolling
 set ttymouse=xterm2                         " Use mouse in xterm
+set swb=usetab                              " Use existing tab when opening buffer
 
 au BufReadPost Jenkinsfile set syntax=groovy
 au BufReadPost Jenkinsfile set filetype=groovy
@@ -94,18 +100,28 @@ augroup END " }
 
 """""""""""""""""""""""
 " Plugins
-""""""""""""""""""""""""
+"""""""""""""""""""""""
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>s :NERDTreeFind<CR>
 " let NERDTreeDirArrows=0
 " Tagbar (Class method listing)
 nnoremap <Leader>c :TagbarToggle<CR>
+"""""""""""""""
 " Vim-Commentary hotkey
+"""""""""""""""
 noremap <leader>/ :Commentary<cr>
-" Code Navigation
-set tags=~/ctags
+"""""""""""""""
+" Ctags Navigation
+"""""""""""""""
+" set tags=~/ctags
+" set tags=~/dev/github/ctags
+set tags=~/dev/github/ctags_spectrum
+"nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+nnoremap <silent><C-]> <C-w><C-]><C-w>T
 
+"""""""""""""""
 " CommandT - Ctrl+t opens in the same tab
+"""""""""""""""
 "let g:CommandTAcceptSelectionMap = '<C-t>'
 
 " Enter opens selected file in tab
@@ -115,7 +131,11 @@ set wildignore+=*.rst,*.git,*.swp,*.bak,*/_tmp/**,*/node_modules/**
 " Search from current working directory
 let g:CommandTTraverseSCM = 'pwd'
 
+"""""""""""""""""""""""
 " CtrlP
+"""""""""""""""""""""""
+" show hidden files
+let g:ctrlp_show_hidden = 1 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP' 
     " Options
@@ -133,11 +153,14 @@ let g:ctrlp_working_path_mode = 0
 nnoremap <C-k> <Esc>:CtrlPLine<CR> 
 " Hotkeys leader+t to search tags
 nnoremap <Leader>r :CtrlPBufTag<CR>
-nnoremap <Leader>t :CtrlP ~/<CR>
+" Search the entire codebase
+nnoremap <Leader>t :CtrlP ~/dev/github<CR>
 nnoremap <Leader>m :CtrlPMRU<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 
+"""""""""""""""""""""""
 " Syntastic
+"""""""""""""""""""""""
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -154,13 +177,16 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_loc_list_height = 5
 "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['python'],'passive_filetypes': [] }
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [''], 'passive_filetypes': [] }
 " nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 nnoremap <Leader>T :SyntasticToggleMode<CR>
 nnoremap <Leader>R :SyntasticReset<CR>
 nnoremap <Leader>C :SyntasticCheck<CR>
+"""""""""""""""""""""""
 " The Silver Searcher
+"""""""""""""""""""""""
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -173,11 +199,19 @@ if executable('ag')
 endif
 
 " custom ctrlp ignore settings
-unlet g:ctrlp_custom_ignore
-unlet g:ctrlp_user_command
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+" unlet g:ctrlp_user_command
+" unlet g:ctrlp_custom_ignore
+" let g:ctrlp_custom_ignore = {
+"     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$',
+"     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+" Vim Session
+let g:session_autosave='yes'
+let g:session_autoload='no'
+nnoremap <leader>so :OpenSession 
+" nnoremap <leader>ss :SaveSession 
+" nnoremap <leader>sd :DeleteSession<CR>
+" nnoremap <leader>sc :CloseSession<CR>
 
 """""""""""""""""""""""
 " Display
