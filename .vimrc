@@ -34,6 +34,8 @@ Plugin 'groenewege/vim-less'                " less syntax
 Plugin 'digitaltoad/vim-pug'                " pug syntax
 Plugin 'tpope/vim-commentary'               " comment out lines
 Plugin 'vim-syntastic/syntastic'            " syntax checker
+Plugin 'mxw/vim-jsx'                        " react syntax
+
 
 " declare all vundle plugins before this line
 " All of your Plugins must be added before the following line
@@ -51,6 +53,7 @@ set softtabstop=0
 set shiftwidth=4                            " Expand tabs to spaces
 set expandtab!
 set smarttab
+set list                                    " show whitespace
 "set autoindent
 set nowrap                                  " No text wrapping
 filetype plugin indent on                   " Allow cursor to places with no actual character (column edit)
@@ -73,6 +76,9 @@ set ttymouse=xterm2                         " Use mouse in xterm
 
 au BufReadPost Jenkinsfile set syntax=groovy
 au BufReadPost Jenkinsfile set filetype=groovy
+au BufReadPost *.ts,*.tsx set syntax=javascript
+au BufReadPost *.ts,*.tsx set filetype=javascript
+" autocmd BufNewFile,BufReadPost *.ts,*.tsx set filetype=js
 
 """""""""""""""""""""""
 " Key Mappings
@@ -165,7 +171,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --ignore-dir dist --ignore-dir node_modules --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
